@@ -1,5 +1,6 @@
 package io.khasang.training_hotel.config;
 
+import io.khasang.training_hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +30,10 @@ public class AppConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
+    }
+
+    @Bean
+    public CreateTable createTable() {
+        return new CreateTable(jdbcTemplate());
     }
 }
