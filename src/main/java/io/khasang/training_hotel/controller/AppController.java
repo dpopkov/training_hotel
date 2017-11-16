@@ -49,4 +49,9 @@ public class AppController {
     public String getPassword(@PathVariable("password") String password) {
         return new BCryptPasswordEncoder().encode(password);
     }
+
+    @RequestMapping("/form")
+    public String formPage() {
+        return "simple-form";
+    }
 }
