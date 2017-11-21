@@ -4,10 +4,7 @@ import io.khasang.training_hotel.entity.Cat;
 import io.khasang.training_hotel.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +25,10 @@ public class CatController {
     public Cat getCatById(@PathVariable("id") String id) {
         return catService.getCatById(Long.parseLong(id));
     }
+
+    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    public Cat addCat(@RequestBody Cat cat) {
+        return catService.addCat(cat);
+    }
+
 }

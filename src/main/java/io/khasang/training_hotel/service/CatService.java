@@ -17,4 +17,10 @@ public interface CatService {
      * @return Cat with specified id
      */
     Cat getCatById(long id);
+
+    /**
+     * @param cat cat that should be added to DB
+     * @return cat
+     */
+    Cat addCat(Cat cat);
 }

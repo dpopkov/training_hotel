@@ -40,4 +40,10 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         criteriaQuery.select(root);
         return getCurrentSession().createQuery(criteriaQuery).list();
     }
+
+    @Override
+    public T add(T entity) {
+        getCurrentSession().save(entity);
+        return entity;
+    }
 }

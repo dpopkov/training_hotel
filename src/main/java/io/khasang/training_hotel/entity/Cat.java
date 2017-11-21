@@ -11,7 +11,7 @@ public class Cat {
 
     private String name;
 
-//    @Column(name = "info")
+    @Column(name = "info")
     private String description;
 
     public String getDescription() {

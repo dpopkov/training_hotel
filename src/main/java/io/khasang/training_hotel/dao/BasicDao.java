@@ -20,8 +20,17 @@ public interface BasicDao<T> {
 
     /**
      * Receive entity by id.
+     *
      * @param id entity id
      * @return entity with specified id
      */
     T getById(long id);
+
+    /**
+     * Add entity.
+     *
+     * @param entity entity
+     * @return added entity
+     */
+    T add(T entity);
 }
