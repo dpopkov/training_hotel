@@ -26,6 +26,7 @@ public class CatController {
         return catService.getCatById(Long.parseLong(id));
     }
 
+    @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     public Cat addCat(@RequestBody Cat cat) {
         return catService.addCat(cat);
