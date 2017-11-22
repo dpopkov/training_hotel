@@ -52,4 +52,13 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         getCurrentSession().update(entity);
         return entity;
     }
+
+    @Override
+    public T deleteById(long id) {
+        T entity = getById(id);
+        if (entity != null) {
+            getCurrentSession().delete(entity);
+        }
+        return entity;
+    }
 }
