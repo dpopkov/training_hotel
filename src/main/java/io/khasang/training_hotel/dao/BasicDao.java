@@ -33,4 +33,12 @@ public interface BasicDao<T> {
      * @return added entity
      */
     T add(T entity);
+
+    /**
+     * Update entity.
+     *
+     * @param entity entity
+     * @return updated entity
+     */
+    T update(T entity);
 }

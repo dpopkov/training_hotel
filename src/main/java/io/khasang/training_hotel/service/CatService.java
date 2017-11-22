@@ -23,4 +23,16 @@ public interface CatService {
      * @return cat
      */
     Cat addCat(Cat cat);
+
+    /**
+     * @param cat cat that should be updated in DB
+     * @return updated cat
+     */
+    Cat updateCat(Cat cat);
+
+    /**
+     * @param name name of cats
+     * @return list of cats with specified name
+     */
+    List<Cat> getCatsByName(String name);
 }

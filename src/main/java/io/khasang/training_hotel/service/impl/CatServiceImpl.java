@@ -27,4 +27,14 @@ public class CatServiceImpl implements CatService {
     public Cat addCat(Cat cat) {
         return catDao.add(cat);
     }
+
+    @Override
+    public Cat updateCat(Cat cat) {
+        return catDao.update(cat);
+    }
+
+    @Override
+    public List<Cat> getCatsByName(String name) {
+        return catDao.getCatsByName(name);
+    }
 }

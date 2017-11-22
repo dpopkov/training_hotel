@@ -11,6 +11,7 @@ import static org.junit.Assert.assertNotNull;
 public class CatControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/cat";
     private final String ADD = "/add";
+    private final String UPDATE = "/update";
     private final String GET_BY_ID = "/get";
 
     @Test
@@ -28,6 +29,59 @@ public class CatControllerIntegrationTest {
         Cat receivedCat = responseEntity.getBody();
         assertNotNull(receivedCat.getDescription());
     }
+
+    /*@Test
+        public void updateCat() {
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Cat> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                13L
+        );
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        Cat cat = responseEntity.getBody();
+
+        cat.setDescription("Funny " + cat.getDescription());
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        HttpEntity<Cat> httpEntity = new HttpEntity<>(cat, httpHeaders);
+        Cat updatedCat = restTemplate.exchange(
+                ROOT + UPDATE,
+                HttpMethod.POST,
+                httpEntity,
+                Cat.class
+        ).getBody();
+
+        assertNotNull(updatedCat);
+        assertEquals(cat.getDescription(), updatedCat.getDescription());
+    }*/
+
+/*    @Test
+    public void updateCat(){
+        Cat cat = createCat();
+        cat.setName("Snegok");
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<Cat> httpEntity = new HttpEntity<>(cat, httpHeaders);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Cat> responseEntity = restTemplate.exchange(
+                ROOT + UPDATE,
+                HttpMethod.POST,
+                httpEntity,
+                Cat.class
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        Cat receivedCat = responseEntity.getBody();
+        assertNotNull(receivedCat.getDescription());
+        assertEquals("Snegok", receivedCat.getName());
+    }*/
 
     private Cat createCat() {
         HttpHeaders httpHeaders = new HttpHeaders();
