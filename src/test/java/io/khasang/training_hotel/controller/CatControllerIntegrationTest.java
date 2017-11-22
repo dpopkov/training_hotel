@@ -60,7 +60,7 @@ public class CatControllerIntegrationTest {
         assertEquals(cat.getDescription(), updatedCat.getDescription());
     }*/
 
-/*    @Test
+    @Test
     public void updateCat(){
         Cat cat = createCat();
         cat.setName("Snegok");
@@ -81,7 +81,7 @@ public class CatControllerIntegrationTest {
         Cat receivedCat = responseEntity.getBody();
         assertNotNull(receivedCat.getDescription());
         assertEquals("Snegok", receivedCat.getName());
-    }*/
+    }
 
     private Cat createCat() {
         HttpHeaders httpHeaders = new HttpHeaders();
