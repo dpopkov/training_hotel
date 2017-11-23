@@ -3,8 +3,11 @@ package io.khasang.training_hotel.controller;
 import io.khasang.training_hotel.entity.Cat;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +19,7 @@ public class CatControllerIntegrationTest {
     private final String UPDATE = "/update";
     private final String DELETE = "/delete";
     private final String GET_BY_ID = "/get";
+    private final String GET_ALL = "/all";
 
     @Test
     public void addCat() {
@@ -87,7 +91,6 @@ public class CatControllerIntegrationTest {
     }*/
 
     @Test
-//    @Ignore
     public void deleteCat() {
         Cat cat = new Cat();
         cat.setId(16L); // It must be real ID existing in database, otherwise fails with HttpServerErrorException: 500 null
@@ -113,6 +116,24 @@ public class CatControllerIntegrationTest {
         );
         assertEquals("OK", responseEntityForDeletedCat.getStatusCode().getReasonPhrase());
         assertNull(responseEntityForDeletedCat.getBody());
+    }
+
+    @Test
+    public void getAllCats() {
+        /*createCat();  // assuming that db contains at least 2 cats
+        createCat();*/
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<Cat>> responseEntity = restTemplate.exchange(
+                ROOT + GET_ALL,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Cat>>() {}
+        );
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        List<Cat> catList = responseEntity.getBody();
+        assertNotNull(catList.get(0));
+        assertNotNull(catList.get(1));
     }
 
     private Cat createCat() {

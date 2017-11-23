@@ -46,7 +46,7 @@ public class CatController {
 
     /*@ResponseBody
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public Cat deleteCatById(@PathVaria le("id") String id) {
+    public Cat deleteCatById(@PathVariable("id") String id) {
         return catService.deleteCatById(Long.parseLong(id));
     }*/
 
