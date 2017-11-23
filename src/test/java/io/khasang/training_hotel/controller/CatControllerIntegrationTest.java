@@ -90,6 +90,7 @@ public class CatControllerIntegrationTest {
 //    @Ignore
     public void deleteCat() {
         Cat cat = new Cat();
+        cat.setId(16L); // It must be real ID existing in database, otherwise fails with HttpServerErrorException: 500 null
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Cat> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "?id=" + "{id}",
