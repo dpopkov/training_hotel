@@ -21,9 +21,8 @@ public class AppController {
 
     // http://localhost:8080
     @RequestMapping("/")
-    public String helloPage(Model model) {
-        model.addAttribute("name", "Jack Sparrow");
-        return "hello";
+    public String helloPage() {
+        return "cat";
     }
 
     @RequestMapping("/create")
