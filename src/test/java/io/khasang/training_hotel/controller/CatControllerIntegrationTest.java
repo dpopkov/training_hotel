@@ -1,17 +1,20 @@
 package io.khasang.training_hotel.controller;
 
 import io.khasang.training_hotel.entity.Cat;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class CatControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/cat";
     private final String ADD = "/add";
     private final String UPDATE = "/update";
+    private final String DELETE = "/delete";
     private final String GET_BY_ID = "/get";
 
     @Test
@@ -82,6 +85,34 @@ public class CatControllerIntegrationTest {
         assertNotNull(receivedCat.getDescription());
         assertEquals("Snegok", receivedCat.getName());
     }*/
+
+    @Test
+//    @Ignore
+    public void deleteCat() {
+        Cat cat = new Cat();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Cat> responseEntity = restTemplate.exchange(
+                ROOT + DELETE + "?id=" + "{id}",
+                HttpMethod.DELETE,
+                null,
+                Cat.class,
+                cat.getId()
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        Cat receivedCat = responseEntity.getBody();
+        assertNotNull(receivedCat.getDescription());
+
+        ResponseEntity<Cat> responseEntityForDeletedCat = restTemplate.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                cat.getId()
+        );
+        assertEquals("OK", responseEntityForDeletedCat.getStatusCode().getReasonPhrase());
+        assertNull(responseEntityForDeletedCat.getBody());
+    }
 
     private Cat createCat() {
         HttpHeaders httpHeaders = new HttpHeaders();

@@ -40,5 +40,11 @@ public interface CatService {
      * @param id id of the cat to delete
      * @return deleted cat
      */
-    Cat deleteCatById(long id);
+//    Cat deleteCatById(long id);
+
+    /**
+     * @param id id of the cat to delete
+     * @return deleted cat
+     */
+    Cat deleteCat(long id);
 }

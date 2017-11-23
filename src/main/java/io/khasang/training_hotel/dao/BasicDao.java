@@ -43,9 +43,18 @@ public interface BasicDao<T> {
     T update(T entity);
 
     /**
-     * Delete entity
+     * Delete entity by id.
+     *
      * @param id id of the entity to delete
      * @return deleted entity
      */
-    T deleteById(long id);
+//    T deleteById(long id);
+
+    /**
+     * Delete entity.
+     *
+     * @param entity entity to delete
+     * @return deleted entity
+     */
+    T delete(T entity);
 }
