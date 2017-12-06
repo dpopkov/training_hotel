@@ -1,12 +1,14 @@
 package io.khasang.training_hotel.controller;
 
 import io.khasang.training_hotel.entity.Cat;
+import io.khasang.training_hotel.entity.CatWoman;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +36,7 @@ public class CatControllerIntegrationTest {
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Cat receivedCat = responseEntity.getBody();
-        assertNotNull(receivedCat.getDescription());
+            assertNotNull(receivedCat.getDescription());
     }
 
     @Test
@@ -150,6 +152,7 @@ public class CatControllerIntegrationTest {
                 httpEntity,
                 Cat.class
         ).getBody();
+
         assertNotNull(createdCat);
         assertEquals(cat.getName(), createdCat.getName());
         assertEquals(cat.getDescription(), createdCat.getDescription());
@@ -160,6 +163,18 @@ public class CatControllerIntegrationTest {
         Cat cat = new Cat();
         cat.setName(name);
         cat.setDescription("Angry cat");
+
+        CatWoman catWoman = new CatWoman();
+        catWoman.setName("Murka");
+        CatWoman catWoman1 = new CatWoman();
+        catWoman1.setName("Riska");
+
+        List<CatWoman> list = new ArrayList<>();
+        list.add(catWoman);
+        list.add(catWoman1);
+
+        cat.setCatWomanList(list);
+
         return cat;
     }
 }

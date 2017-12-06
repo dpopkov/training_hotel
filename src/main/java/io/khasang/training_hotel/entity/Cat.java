@@ -1,6 +1,8 @@
 package io.khasang.training_hotel.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cats")
@@ -10,6 +12,9 @@ public class Cat {
     private long id;
 
     private String name;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CatWoman> catWomanList = new ArrayList<>();
 
     @Column(name = "info")
     private String description;
@@ -36,5 +41,13 @@ public class Cat {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<CatWoman> getCatWomanList() {
+        return catWomanList;
+    }
+
+    public void setCatWomanList(List<CatWoman> catWomanList) {
+        this.catWomanList = catWomanList;
     }
 }
