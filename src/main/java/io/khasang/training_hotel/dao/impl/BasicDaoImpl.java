@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 public class BasicDaoImpl<T> implements BasicDao<T> {
@@ -42,6 +44,19 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public Set<T> getSet() {
+        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+
+        criteriaQuery.select(root);
+        List<T> list = getCurrentSession().createQuery(criteriaQuery).list();
+        Set<T> set = new HashSet<>();
+        set.addAll(list);
+        return set;
+    }
+
+    @Override
     public T add(T entity) {
         getCurrentSession().save(entity);
         return entity;
@@ -52,15 +67,6 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         getCurrentSession().update(entity);
         return entity;
     }
-
-    /*@Override
-    public T deleteById(long id) {
-        T entity = getById(id);
-        if (entity != null) {
-            getCurrentSession().delete(entity);
-        }
-        return entity;
-    }*/
 
     @Override
     public T delete(T entity) {

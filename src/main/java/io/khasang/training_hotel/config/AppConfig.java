@@ -1,6 +1,8 @@
 package io.khasang.training_hotel.config;
 
+import io.khasang.training_hotel.dao.CarDao;
 import io.khasang.training_hotel.dao.CatDao;
+import io.khasang.training_hotel.dao.impl.CarDaoImpl;
 import io.khasang.training_hotel.dao.impl.CatDaoImpl;
 import io.khasang.training_hotel.entity.Cat;
 import io.khasang.training_hotel.model.CreateTable;
@@ -55,5 +57,10 @@ public class AppConfig {
     @Bean
     public CatDao catDao() {
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public CarDao carDao() {
+        return new CarDaoImpl();
     }
 }
