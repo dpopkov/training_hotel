@@ -30,9 +30,10 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car getCarById(long id) {
-//        return null;
-        throw new NotImplementedException();
+    public CarDTO getCarById(long id) {
+        Car car = carDao.getById(id);
+        CarDTO dto = carDTO.getCarDTO(car);
+        return dto;
     }
 
     @Override

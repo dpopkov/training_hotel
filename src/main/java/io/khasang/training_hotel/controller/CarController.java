@@ -5,10 +5,7 @@ import io.khasang.training_hotel.entity.Car;
 import io.khasang.training_hotel.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -28,5 +25,11 @@ public class CarController {
     @ResponseBody
     public Set<CarDTO> getCars() {
         return carService.getSet();
+    }
+
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public CarDTO getCarById(@PathVariable("id") String id) {
+        return carService.getCarById(Long.parseLong(id));
     }
 }

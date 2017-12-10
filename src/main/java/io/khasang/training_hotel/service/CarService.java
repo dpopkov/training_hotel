@@ -15,9 +15,9 @@ public interface CarService {
 
     /**
      * @param id car id
-     * @return Car with specified id
+     * @return Car DTO with specified id
      */
-    Car getCarById(long id);
+    CarDTO getCarById(long id);
 
     /**
      * @param car car that should be added to DB

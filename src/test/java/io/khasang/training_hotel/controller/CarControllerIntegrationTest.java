@@ -19,11 +19,25 @@ public class CarControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/car";
     private final String ADD = "/add";
     private final String ALL = "/all";
+    private final String GET_BY_ID = "/get";
 
     @Test
     public void addCar() {
         Car car = createCar();
         RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Car> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Car.class,
+                car.getId()
+        );
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        Car receivedCar = responseEntity.getBody();
+
+        assertNotNull(receivedCar.getModel());
+        assertEquals(car.getId(), receivedCar.getId());
+        assertEquals(car.getYear(), receivedCar.getYear());
     }
 
     @Test
