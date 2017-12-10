@@ -1,5 +1,6 @@
 package io.khasang.training_hotel.controller;
 
+import io.khasang.training_hotel.dto.CarDTO;
 import io.khasang.training_hotel.entity.Car;
 import io.khasang.training_hotel.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CarController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public Set<Car> getCars() {
+    public Set<CarDTO> getCars() {
         return carService.getSet();
     }
 }

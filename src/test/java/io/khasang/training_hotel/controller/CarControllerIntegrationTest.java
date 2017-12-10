@@ -1,5 +1,6 @@
 package io.khasang.training_hotel.controller;
 
+import io.khasang.training_hotel.dto.CarDTO;
 import io.khasang.training_hotel.entity.Car;
 import io.khasang.training_hotel.entity.Employee;
 import org.junit.Test;
@@ -31,14 +32,14 @@ public class CarControllerIntegrationTest {
         createCar();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Set<Car>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Set<CarDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<Set<Car>>() {}
+                new ParameterizedTypeReference<Set<CarDTO>>() {}
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Set<Car> carSet = responseEntity.getBody();
+        Set<CarDTO> carSet = responseEntity.getBody();
         assertNotNull(carSet);
     }
 

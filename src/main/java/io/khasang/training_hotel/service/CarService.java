@@ -1,5 +1,6 @@
 package io.khasang.training_hotel.service;
 
+import io.khasang.training_hotel.dto.CarDTO;
 import io.khasang.training_hotel.entity.Car;
 
 import java.util.Set;
@@ -10,7 +11,7 @@ public interface CarService {
      *
      * @return list of all cars
      */
-    Set<Car> getSet();
+    Set<CarDTO> getSet();
 
     /**
      * @param id car id
